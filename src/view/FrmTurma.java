@@ -7,7 +7,9 @@ import javax.swing.table.DefaultTableModel; // Para manipular o modelo da tabela
 import javax.swing.JOptionPane;            // Para exibir mensagens ao usuário
 import java.util.List;                     // Para trabalhar com listas
 import modelo.Turma;                       // Classe Turma (modelo)
-import controller.TurmaControl;            // Classe de controle das turmas
+import controller.TurmaControl;     
+import view.FrmAluno;
+import view.FrmTurmaAluno;
 
 
 
@@ -47,6 +49,8 @@ public class FrmTurma extends javax.swing.JFrame {
         btnlis = new javax.swing.JButton();
         JScrollPane1 = new javax.swing.JScrollPane();
         tblturma = new javax.swing.JTable();
+        btnGerAluno = new javax.swing.JButton();
+        btnGerTurmaAluno = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,57 +113,78 @@ public class FrmTurma extends javax.swing.JFrame {
         ));
         JScrollPane1.setViewportView(tblturma);
 
+        btnGerAluno.setText("Gerenciamento de Aluno");
+        btnGerAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGerAlunoActionPerformed(evt);
+            }
+        });
+
+        btnGerTurmaAluno.setText("Gerenciamento Turma/Aluno");
+        btnGerTurmaAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGerTurmaAlunoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(77, 77, 77)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel3)
+                        .addGap(53, 53, 53)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(jLabel4)))
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(JScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(btnadc)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnalt)
-                        .addGap(12, 12, 12)
-                        .addComponent(btndel)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnadc)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnalt)
+                                .addGap(26, 26, 26)
+                                .addComponent(btndel)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnlis))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(btnGerAluno)
                         .addGap(18, 18, 18)
-                        .addComponent(btnlis)))
-                .addContainerGap(15, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(JScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+                        .addComponent(btnGerTurmaAluno)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1))
-                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGerAluno)
+                    .addComponent(btnGerTurmaAluno))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -169,9 +194,9 @@ public class FrmTurma extends javax.swing.JFrame {
                     .addComponent(btnalt)
                     .addComponent(btndel)
                     .addComponent(btnlis))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(JScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(JScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
 
         pack();
@@ -241,6 +266,24 @@ public class FrmTurma extends javax.swing.JFrame {
 
     }//GEN-LAST:event_JScrollPane1MouseClicked
 
+    private void btnGerAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerAlunoActionPerformed
+      
+    FrmAluno frmAluno = new FrmAluno();
+    
+    frmAluno.setVisible(true);
+    
+    this.dispose();
+    }//GEN-LAST:event_btnGerAlunoActionPerformed
+
+    private void btnGerTurmaAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerTurmaAlunoActionPerformed
+        
+    FrmTurmaAluno frmTurmaAluno = new FrmTurmaAluno();
+    
+    frmTurmaAluno.setVisible(true);
+    
+    this.dispose();
+    }//GEN-LAST:event_btnGerTurmaAlunoActionPerformed
+
     private void tblturma() {
     List<Turma> turmas = turmaControl.listar(""); // Obtém a lista de turmas
 
@@ -290,6 +333,8 @@ public class FrmTurma extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane JScrollPane1;
+    private javax.swing.JButton btnGerAluno;
+    private javax.swing.JButton btnGerTurmaAluno;
     private javax.swing.JButton btnadc;
     private javax.swing.JButton btnalt;
     private javax.swing.JButton btndel;
